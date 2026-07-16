@@ -120,6 +120,6 @@ class Solution {
 
 <div align="center">
 
-*Submitted: Jul 16, 2026, 06:53 PM · Platform: GeeksForGeeks · Auto-archived by [UniCode](https://github.com/UniCode-ext/unicode)*
+*Submitted: Jul 16, 2026, 07:02 PM · Platform: GeeksForGeeks · Auto-archived by [UniCode](https://github.com/UniCode-ext/unicode)*
 
 </div>
