@@ -2,55 +2,7 @@
 
 # 🟢 Dijkstra Algorithm
 
-![GeeksForGeeks](https://img.shields.io/badge/GeeksForGeeks-2F8D46?style=flat-square) ![Graphs](https://img.shields.io/badge/Graphs-6c63ff?style=flat-square) ![N/A](https://img.shields.io/badge/N%2FA-8a8a8a?style=flat-square) ![class solution {
-    class graph implements comparable<graph>{
-        int node;
-        int dis;
-        graph(int node, int dis){
-            this.node = node;
-            this.dis = dis;
-        }
-        public int compareto(graph o){
-            return this.dis < o.dis ? -1 : this.dis > o.dis ? 1 : this.node - o.node;
-        }
-    }
-    
-    
-    public int[] dijkstra(int v, int[][] edges, int src) {
-        // code here
-        int dis[] = new int[v];
-        arrays.fill(dis, integer.max_value);
-        
-        list<list<graph>> adj = new arraylist<>();
-        for(int i = 0; i < v; i++)adj.add(new arraylist<>());
-        
-        for(int edg[]: edges){
-            adj.get(edg[0]).add(new graph(edg[1], edg[2]));
-            adj.get(edg[1]).add(new graph(edg[0], edg[2]));
-        }
-        
-        treeset<graph> set = new treeset<>();
-        dis[src] = 0;
-        set.add(new graph(src, 0));
-        
-        while(set.size() != 0){
-            graph g = set.pollfirst();
-            int node = g.node;
-            int dist = g.dis;
-            
-            for(graph nbn: adj.get(node)){
-            
-                int newdis = nbn.dis + dist;
-                if(dis[nbn.node] > newdis){
-                    dis[nbn.node] = newdis;
-                    set.add(new graph(nbn.node, newdis));
-                }
-            }
-        }
-        
-        return dis;
-    }
-}](https://img.shields.io/badge/class_solution_%7B%0A____class_graph_implements_comparable%3Cgraph%3E%7B%0A________int_node%3B%0A________int_dis%3B%0A________graph(int_node%2C_int_dis)%7B%0A____________this.node_%3D_node%3B%0A____________this.dis_%3D_dis%3B%0A________%7D%0A________public_int_compareto(graph_o)%7B%0A____________return_this.dis_%3C_o.dis_%3F_--1_%3A_this.dis_%3E_o.dis_%3F_1_%3A_this.node_--_o.node%3B%0A________%7D%0A____%7D%0A____%0A____%0A____public_int%5B%5D_dijkstra(int_v%2C_int%5B%5D%5B%5D_edges%2C_int_src)_%7B%0A________%2F%2F_code_here%0A________int_dis%5B%5D_%3D_new_int%5Bv%5D%3B%0A________arrays.fill(dis%2C_integer.max_value)%3B%0A________%0A________list%3Clist%3Cgraph%3E%3E_adj_%3D_new_arraylist%3C%3E()%3B%0A________for(int_i_%3D_0%3B_i_%3C_v%3B_i%2B%2B)adj.add(new_arraylist%3C%3E())%3B%0A________%0A________for(int_edg%5B%5D%3A_edges)%7B%0A____________adj.get(edg%5B0%5D).add(new_graph(edg%5B1%5D%2C_edg%5B2%5D))%3B%0A____________adj.get(edg%5B1%5D).add(new_graph(edg%5B0%5D%2C_edg%5B2%5D))%3B%0A________%7D%0A________%0A________treeset%3Cgraph%3E_set_%3D_new_treeset%3C%3E()%3B%0A________dis%5Bsrc%5D_%3D_0%3B%0A________set.add(new_graph(src%2C_0))%3B%0A________%0A________while(set.size()_!%3D_0)%7B%0A____________graph_g_%3D_set.pollfirst()%3B%0A____________int_node_%3D_g.node%3B%0A____________int_dist_%3D_g.dis%3B%0A____________%0A____________for(graph_nbn%3A_adj.get(node))%7B%0A____________%0A________________int_newdis_%3D_nbn.dis_%2B_dist%3B%0A________________if(dis%5Bnbn.node%5D_%3E_newdis)%7B%0A____________________dis%5Bnbn.node%5D_%3D_newdis%3B%0A____________________set.add(new_graph(nbn.node%2C_newdis))%3B%0A________________%7D%0A____________%7D%0A________%7D%0A________%0A________return_dis%3B%0A____%7D%0A%7D-0f9d58?style=flat-square)
+![GeeksForGeeks](https://img.shields.io/badge/GeeksForGeeks-2F8D46?style=flat-square) ![Graphs](https://img.shields.io/badge/Graphs-6c63ff?style=flat-square) ![N/A](https://img.shields.io/badge/N%2FA-8a8a8a?style=flat-square) ![c++ (17)c++ (17)java (21)python3c#javascript (node v22)](https://img.shields.io/badge/c%2B%2B_(17)c%2B%2B_(17)java_(21)python3c%23javascript_(node_v22)-0f9d58?style=flat-square)
 
 [![Problem Link](https://img.shields.io/badge/Open%20Problem-grey?style=flat&logo=link)](https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1)
 
@@ -119,10 +71,54 @@ Start Timer
 5
 6
 7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
 class Solution {
   public:
     vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
         // Code here
+        vector<vector<pair<int,int>>> adj(V);
+        for(int i=0;i<edges.size();i++){
+            adj[edges[i][0]].push_back({edges[i][2],edges[i][1]});
+            adj[edges[i][1]].push_back({edges[i][2],edges[i][0]});
+        }
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        vector<int> dis(V,1e9);
+        dis[src]=0;
+        pq.push({0,src});
+        
+        while(!pq.empty()){
+            auto [w,i] = pq.top();
+            pq.pop();
+            for(auto& it : adj[i]){
+                if(dis[it.second]>w+it.first){
+                    dis[it.second]=w+it.first;
+                    pq.push({dis[it.second],it.second});
+                }
+            }
+        }
+        return dis;
+        
         
     }
 };
@@ -145,78 +141,52 @@ Custom InputCompile & RunSubmit**
 
 > 🧠 *Generated by UniCode AI*
 
-**Key Insight:** The code implements Dijkstra's algorithm using a priority queue to efficiently select the node with the minimum distance, and updates the distances of its neighbors.
+**Key Insight:** The code implements Dijkstra's algorithm to find the shortest distance from a source vertex to all other vertices in a weighted graph by maintaining a priority queue of vertices to visit, where the priority is the minimum distance from the source vertex.
 
 ### Algorithm Walkthrough
 
-1. The code initializes an array `dis` to store the minimum distances from the source node to all other nodes, and sets all distances to `Integer.MAX_VALUE`.
-2. It creates an adjacency list `adj` to represent the graph, and populates it with edges from the input `edges` array.
-3. The code then uses a priority queue `set` to select the node with the minimum distance, and iteratively updates the distances of its neighbors until all nodes have been processed.
+1. The code first constructs an adjacency list representation of the graph by iterating over the edges and adding each edge to the adjacency list of both its endpoints.
+2. It then initializes a priority queue with the source vertex and a distance array with infinite values for all vertices except the source vertex, which is set to 0.
+3. The code then enters a loop that continues until the priority queue is empty, in each iteration it dequeues the vertex with the minimum distance (i.e., the highest priority) and updates the distances of its neighbors if a shorter path is found.
 
 ### Complexity Analysis
 
 | | Complexity | Notes |
 |--|------------|-------|
-| ⏱️ **Time** | `O(E + V log V)` | The time complexity is dominated by the priority queue operations (insertion and extraction), which take O(log V) time each, and the number of edges and nodes (E + V). The space complexity is O(V + E) due to the adjacency list and priority queue. |
+| ⏱️ **Time** | `O(E + V log V)` | The time complexity is O(E + V log V) because the code iterates over the edges E times to construct the adjacency list and then uses a priority queue to select the vertex with the minimum distance V times, resulting in a total of O(E + V log V) operations. The space complexity is O(V + E) because the code uses a priority queue and a distance array to store the distances of all vertices. |
 | 🗄️ **Space** | `O(V + E)` | |
 
 ---
 
 ## ✅ Accepted Solution 
 
-```class solution {
-    class graph implements comparable<graph>{
-        int node;
-        int dis;
-        graph(int node, int dis){
-            this.node = node;
-            this.dis = dis;
-        }
-        public int compareto(graph o){
-            return this.dis < o.dis ? -1 : this.dis > o.dis ? 1 : this.node - o.node;
-        }
-    }
-    
-    
-    public int[] dijkstra(int v, int[][] edges, int src) {
-        // code here
-        int dis[] = new int[v];
-        arrays.fill(dis, integer.max_value);
-        
-        list<list<graph>> adj = new arraylist<>();
-        for(int i = 0; i < v; i++)adj.add(new arraylist<>());
-        
-        for(int edg[]: edges){
-            adj.get(edg[0]).add(new graph(edg[1], edg[2]));
-            adj.get(edg[1]).add(new graph(edg[0], edg[2]));
-        }
-        
-        treeset<graph> set = new treeset<>();
-        dis[src] = 0;
-        set.add(new graph(src, 0));
-        
-        while(set.size() != 0){
-            graph g = set.pollfirst();
-            int node = g.node;
-            int dist = g.dis;
-            
-            for(graph nbn: adj.get(node)){
-            
-                int newdis = nbn.dis + dist;
-                if(dis[nbn.node] > newdis){
-                    dis[nbn.node] = newdis;
-                    set.add(new graph(nbn.node, newdis));
-                }
-            }
-        }
-        
-        return dis;
-    }
-}
+```c++ (17)c++ (17)java (21)python3c#javascript (node v22)
 class Solution {
   public:
     vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
         // Code here
+        vector<vector<pair<int,int>>> adj(V);
+        for(int i=0;i<edges.size();i++){
+            adj[edges[i][0]].push_back({edges[i][2],edges[i][1]});
+            adj[edges[i][1]].push_back({edges[i][2],edges[i][0]});
+        }
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        vector<int> dis(V,1e9);
+        dis[src]=0;
+        pq.push({0,src});
+        
+        while(!pq.empty()){
+            auto [w,i] = pq.top();
+            pq.pop();
+            for(auto& it : adj[i]){
+                if(dis[it.second]>w+it.first){
+                    dis[it.second]=w+it.first;
+                    pq.push({dis[it.second],it.second});
+                }
+            }
+        }
+        return dis;
+        
         
     }
 };
@@ -224,6 +194,6 @@ class Solution {
 
 <div align="center">
 
-*Submitted: Jul 23, 2026, 04:17 PM · Platform: GeeksForGeeks · Auto-archived by [UniCode](https://github.com/UniCode-ext/unicode)*
+*Submitted: Jul 23, 2026, 04:18 PM · Platform: GeeksForGeeks · Auto-archived by [UniCode](https://github.com/UniCode-ext/unicode)*
 
 </div>
